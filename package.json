@@ -1,15 +1,5 @@
 {
-  "name": "taliwind_walkthrough_protos",
-  "version": "1.0.0",
-  "main": "index.js",
   "devDependencies": {
     "tailwindcss": "^3.3.2"
-  },
-  "scripts": {
-    "css-build": "tailwindcss build src/styles.css -o public/styles.css"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  }
 }
