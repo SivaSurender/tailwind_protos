@@ -20,17 +20,23 @@ const cartSlice = createSlice({
       state.cart.push(action.payload);
     },
     deleteItem(state, action) {
+      console.log(state.cart, 'delete');
       state.cart = state.cart.filter((each) => each.pizzaId !== action.payload);
     },
     increasePizzaQuantity(state, action) {
-      const item = state.cart.find((each) => each.pizzaId === action.pizzaId);
+      const item = state.cart.find((each) => each.pizzaId === action.payload);
       item.quantity++;
       item.totalPrice = item.unitPrice * item.quantity;
     },
     decreasePizzaQuantity(state, action) {
-      const item = state.cart.find((each) => each.pizzaId === action.pizzaId);
+      console.log(state.cart, 'decrease');
+
+      const item = state.cart.find((each) => each.pizzaId === action.payload);
       item.quantity--;
       item.totalPrice = item.unitPrice * item.quantity;
+
+      // reducers can be reused by using casereduces- if already the reducer is declared
+      if (item.quantity === 0) cartSlice.caseReducers.deleteItem(state, action);
     },
     clearCart(state, action) {
       state.cart = [];

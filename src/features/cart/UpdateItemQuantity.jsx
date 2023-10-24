@@ -3,6 +3,7 @@ import Button from '../../ui/Button';
 import { increasePizzaQuantity, decreasePizzaQuantity } from './cartSlice';
 
 function UpdateItemQuantity({ pizzaId, currentQuantity }) {
+  console.log(pizzaId, 'pizzaId');
   const dispatch = useDispatch();
 
   return (
