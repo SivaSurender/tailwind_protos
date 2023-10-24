@@ -52,6 +52,8 @@ export const {
   clearCart,
 } = cartSlice.actions;
 
+export const getCart = (state) => state.cart.cart;
+
 export const getPizzaCount = (state) =>
   state.cart.cart.reduce((acc, curr) => acc + curr.quantity, 0);
 

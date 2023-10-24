@@ -2,12 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../ui/Button';
 import { formatCurrency } from '../../utils/helpers';
 import { addItem, deleteItem, getQuantitybyId } from '../cart/cartSlice';
+import UpdateItemQuantity from '../cart/UpdateItemQuantity';
 
 function MenuItem({ pizza }) {
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
   const dispatch = useDispatch();
 
-  const isCartOpenforProduct = useSelector(getQuantitybyId(id)) > 0;
+  const isCartOpenforProduct = useSelector(getQuantitybyId(id));
 
   function handleAddItems() {
     console.log(id, 'clickid');
@@ -46,13 +47,19 @@ function MenuItem({ pizza }) {
               Sold out
             </p>
           )}
-          {isCartOpenforProduct && (
-            <Button type="small" onClick={handleDelete}>
-              Delete
-            </Button>
+          {isCartOpenforProduct > 0 && (
+            <div className="flex items-center gap-2">
+              <UpdateItemQuantity
+                currentQuantity={isCartOpenforProduct}
+                pizzaId={id}
+              />
+              <Button type="small" onClick={handleDelete}>
+                Delete
+              </Button>
+            </div>
           )}
 
-          {!soldOut && !isCartOpenforProduct && (
+          {!soldOut && isCartOpenforProduct <= 0 && (
             <Button type="small" onClick={handleAddItems}>
               Add to cart
             </Button>
