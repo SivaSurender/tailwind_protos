@@ -144,11 +144,7 @@ function CreateOrder() {
           <input
             type="hidden"
             name="position"
-            value={
-              position.longitude
-                ? `${position.latitude},${position.longitude}`
-                : ''
-            }
+            value={position ? `${position.latitude},${position.longitude}` : ''}
           />
           <Button disabled={isSubmitting || isAddressLoading} type="primary">
             {isSubmitting
