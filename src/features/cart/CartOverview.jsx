@@ -5,6 +5,7 @@ import { getPizzaCount, getTotalPrice } from './cartSlice';
 function CartOverview() {
   const totalPizzas = useSelector(getPizzaCount);
   const totalPrize = useSelector(getTotalPrice);
+
   if (!totalPizzas) return null;
   return (
     <div className="flex items-center justify-between bg-stone-800 px-4 py-4 text-sm uppercase text-stone-200 sm:px-6 md:text-base">
